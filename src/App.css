@@ -2,5 +2,22 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 3rem;
+}
+
+.nav-menu li > a {
+  color: dodgerblue;
+  text-decoration: none;
+}
+
+.nav-menu li > a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
