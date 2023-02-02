@@ -30,6 +30,10 @@
   margin: 2rem 0;
 }
 
+.home-skeleton {
+  max-width: 10rem;
+}
+
 footer {
   margin: 2rem 0;
 }
