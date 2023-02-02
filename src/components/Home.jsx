@@ -1,3 +1,10 @@
+import React from "react";
+
 export default function Home() {
-  return <p>Home</p>;
+  return (
+    <main>
+      <small className="breadcrumb">You are here {">"} Home</small>
+      <section className="main-content">Home Section</section>
+    </main>
+  );
 }
