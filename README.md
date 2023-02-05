@@ -1,13 +1,17 @@
 # React - Tasks
 
-My introduction to React.<br>
-Check out the different branches to see the tasks in question.
+## States
+
+This task is from [React Docs](https://beta.reactjs.org/learn/state-a-components-memory) > State: A Component's Memory<br>
+
+1. Complete the gallery<br>
+
+######
 
 ## Built With
 
 - [Vite](https://vitejs.dev/)
 - [React](https://reactjs.org//)
-- [TailwindCSS (task 2)](https://tailwindcss.com/)
 - JavaScript
 
 ## Getting Started
