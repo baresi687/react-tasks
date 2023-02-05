@@ -15,11 +15,11 @@
 .nav-menu li > a {
   color: dodgerblue;
   text-decoration: none;
+  text-underline-offset: 6px;
 }
 
 .nav-menu li > a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  filter: brightness(80%);
 }
 
 .breadcrumb {
