@@ -35,6 +35,14 @@ npm run build
 npm run preview
 ```
 
+### Branch checkout
+
+Because the branches have different dependencies, run this after checkout:
+
+```
+npm install
+```
+
 ## Contact
 
 [My LinkedIn page](https://www.linkedin.com/in/hreinn-gylfason-b9a48521a/)
