@@ -1,0 +1,21 @@
+#task-2 > div {
+  margin-top: 1rem;
+}
+
+button {
+  margin: 1rem 0;
+}
+
+.menu.closed {
+  display: none;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+nav > a {
+  text-decoration: none;
+}

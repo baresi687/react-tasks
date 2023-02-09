@@ -2,7 +2,7 @@
 
 ## States
 
-This task is from [React Docs](https://beta.reactjs.org/learn/state-a-components-memory) > State: A Component's Memory<br>
+The first task from this branch is from [React Docs](https://beta.reactjs.org/learn/state-a-components-memory) > State: A Component's Memory<br>
 
 1. Complete the gallery<br>
 

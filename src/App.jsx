@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { sculptureList } from "./data.js";
 import "./App.css";
+import Task2 from "./components/task-2/Task-2.jsx";
 
 export default function App() {
   const [index, setIndex] = useState(0);
@@ -28,28 +29,32 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <div className="buttons-container">
-        <button onClick={handlePreviousClick} disabled={!isPrev}>
-          Previous
-        </button>
-        <button onClick={handleNextClick} disabled={isNext}>
-          Next
-        </button>
-      </div>
-      <h2>
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
-      </h3>
-      <div>
-        <button onClick={handleMoreClick}>{showMore ? "Hide" : "Show"} details</button>
-        {showMore && <p>{sculpture.description}</p>}
-      </div>
-      <div>
-        <img src={sculpture.url} alt={sculpture.alt} />
-      </div>
+      <section id="task-1">
+        <h2>Task 1</h2>
+        <div className="buttons-container">
+          <button onClick={handlePreviousClick} disabled={!isPrev}>
+            Previous
+          </button>
+          <button onClick={handleNextClick} disabled={isNext}>
+            Next
+          </button>
+        </div>
+        <h2>
+          <i>{sculpture.name} </i>
+          by {sculpture.artist}
+        </h2>
+        <h3>
+          ({index + 1} of {sculptureList.length})
+        </h3>
+        <div>
+          <button onClick={handleMoreClick}>{showMore ? "Hide" : "Show"} details</button>
+          {showMore && <p>{sculpture.description}</p>}
+        </div>
+        <div>
+          <img src={sculpture.url} alt={sculpture.alt} />
+        </div>
+      </section>
+      <Task2 />
     </div>
   );
 }
