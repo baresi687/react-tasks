@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { API } from '../constants/api.js';
+import { API } from '../../constants/api.js';
 
 export default function GameList() {
   const [games, setGames] = useState([]);
@@ -14,6 +14,7 @@ export default function GameList() {
         if (response.ok) {
           const responseJSON = await response.json();
           setGames(responseJSON);
+          console.log(responseJSON);
         } else {
           setError('An error occurred');
         }
@@ -38,9 +39,9 @@ export default function GameList() {
     <>
       {games.map((game) => {
         return (
-          <div key={game.id}>
-            <h2>{game.name}</h2>
-            <img src={game.image} alt={game.name} />
+          <div key={game.id} className="flex flex-col gap-3">
+            <h1 className="text-2xl">{game.name}</h1>
+            <img className="w-full" src={game.image} alt={game.name} />
             <p>Genres: {game.genre.join(', ')}</p>
             <p>Release date: {game.released}</p>
           </div>
