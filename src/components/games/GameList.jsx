@@ -36,7 +36,7 @@ export default function GameList() {
 
   if (loading) {
     return (
-      <Box>
+      <Box className="flex justify-center">
         <CircularProgress />
       </Box>
     );
@@ -44,7 +44,7 @@ export default function GameList() {
 
   if (error) {
     return (
-      <Stack sx={{ width: '100%' }} spacing={2}>
+      <Stack>
         <Alert severity="error">Something went wrong.. please try again later</Alert>
       </Stack>
     );
@@ -52,26 +52,29 @@ export default function GameList() {
 
   return (
     <>
-      {games.map(({ id, name, image, genre, released }) => {
-        return (
-          <div key={id}>
-            <Card>
-              <CardMedia className="h-[14rem]" component="img" image={image} alt={name} />
-              <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                  {name}
-                </Typography>
-                <Typography>
-                  Genres: <strong>{genre.join(', ')}</strong>
-                </Typography>
-                <Typography>
-                  Released: <strong>{released}</strong>
-                </Typography>
-              </CardContent>
-            </Card>
-          </div>
-        );
-      })}
+      <h1 className="text-5xl text-center">Games</h1>
+      <div className="max-w-5xl mx-auto grid grid-cols-3 gap-5 p-6">
+        {games.map(({ id, name, image, genre, released }) => {
+          return (
+            <div key={id}>
+              <Card>
+                <CardMedia className="h-[14rem]" component="img" image={image} alt={name} />
+                <CardContent>
+                  <Typography gutterBottom variant="h6" component="div">
+                    {name}
+                  </Typography>
+                  <Typography>
+                    Genres: <strong>{genre.join(', ')}</strong>
+                  </Typography>
+                  <Typography>
+                    Released: <strong>{released}</strong>
+                  </Typography>
+                </CardContent>
+              </Card>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
