@@ -1,8 +1,8 @@
-import { useState } from "react";
-import "./App.css";
+import './App.css';
+import GameList from './components/games/gameList.jsx';
 
 function App() {
-  return <h1>Hello</h1>;
+  return <GameList />;
 }
 
 export default App;
