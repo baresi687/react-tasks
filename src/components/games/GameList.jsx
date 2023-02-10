@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react';
 import { API } from '../../constants/api.js';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 export default function GameList() {
   const [games, setGames] = useState([]);
@@ -14,7 +22,6 @@ export default function GameList() {
         if (response.ok) {
           const responseJSON = await response.json();
           setGames(responseJSON);
-          console.log(responseJSON);
         } else {
           setError('An error occurred');
         }
@@ -28,22 +35,40 @@ export default function GameList() {
   }, []);
 
   if (loading) {
-    return <div>Loading... </div>;
+    return (
+      <Box>
+        <CircularProgress />
+      </Box>
+    );
   }
 
   if (error) {
-    return <div>An error occurred</div>;
+    return (
+      <Stack sx={{ width: '100%' }} spacing={2}>
+        <Alert severity="error">Something went wrong.. please try again later</Alert>
+      </Stack>
+    );
   }
 
   return (
     <>
-      {games.map((game) => {
+      {games.map(({ id, name, image, genre, released }) => {
         return (
-          <div key={game.id} className="flex flex-col gap-3">
-            <h1 className="text-2xl">{game.name}</h1>
-            <img className="w-full" src={game.image} alt={game.name} />
-            <p>Genres: {game.genre.join(', ')}</p>
-            <p>Release date: {game.released}</p>
+          <div key={id}>
+            <Card>
+              <CardMedia className="h-[14rem]" component="img" image={image} alt={name} />
+              <CardContent>
+                <Typography gutterBottom variant="h6" component="div">
+                  {name}
+                </Typography>
+                <Typography>
+                  Genres: <strong>{genre.join(', ')}</strong>
+                </Typography>
+                <Typography>
+                  Released: <strong>{released}</strong>
+                </Typography>
+              </CardContent>
+            </Card>
           </div>
         );
       })}
