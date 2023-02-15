@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { API } from '../../constants/api.js';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import GameItem from './GameItem.jsx';
 
 export default function GameList() {
   const [games, setGames] = useState([]);
@@ -55,28 +51,10 @@ export default function GameList() {
   return (
     <>
       <h1 className="text-5xl text-center">Games</h1>
+      <h2 className="text-lg text-center mt-6">Note: This API endpoint is sensitive to 429 errors</h2>
       <div className="max-w-5xl mx-auto grid grid-cols-3 gap-5 p-6">
         {games.map(({ id, name, image, genre, released }) => {
-          return (
-            <div key={id}>
-              <Link to={`/game-details/${id}`}>
-                <Card>
-                  <CardMedia className="h-[14rem]" component="img" image={image} alt={name} />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      {name}
-                    </Typography>
-                    <Typography>
-                      Genres: <strong>{genre.join(', ')}</strong>
-                    </Typography>
-                    <Typography>
-                      Released: <strong>{released}</strong>
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          );
+          return <GameItem key={id} id={id} name={name} image={image} genre={genre} released={released} />;
         })}
       </div>
     </>
