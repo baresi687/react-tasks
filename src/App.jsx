@@ -1,9 +1,9 @@
-import GameList from './components/games/GameList.jsx';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <section className="p-8">
-      <GameList />
+      <Outlet />
     </section>
   );
 }

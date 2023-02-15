@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { API } from '../../constants/api.js';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -52,29 +53,31 @@ export default function GameList() {
 
   return (
     <>
-      <h1 className="text-5xl text-center">Games</h1>
-      <div className="max-w-5xl mx-auto grid grid-cols-3 gap-5 p-6">
-        {games.map(({ id, name, image, genre, released }) => {
-          return (
-            <div key={id}>
-              <Card>
-                <CardMedia className="h-[14rem]" component="img" image={image} alt={name} />
-                <CardContent>
-                  <Typography gutterBottom variant="h6" component="div">
-                    {name}
-                  </Typography>
-                  <Typography>
-                    Genres: <strong>{genre.join(', ')}</strong>
-                  </Typography>
-                  <Typography>
-                    Released: <strong>{released}</strong>
-                  </Typography>
-                </CardContent>
-              </Card>
-            </div>
-          );
-        })}
-      </div>
+      <Link to="/game-details">
+        <h1 className="text-5xl text-center">Games</h1>
+        <div className="max-w-5xl mx-auto grid grid-cols-3 gap-5 p-6">
+          {games.map(({ id, name, image, genre, released }) => {
+            return (
+              <div key={id}>
+                <Card>
+                  <CardMedia className="h-[14rem]" component="img" image={image} alt={name} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h6" component="div">
+                      {name}
+                    </Typography>
+                    <Typography>
+                      Genres: <strong>{genre.join(', ')}</strong>
+                    </Typography>
+                    <Typography>
+                      Released: <strong>{released}</strong>
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
+      </Link>
     </>
   );
 }
