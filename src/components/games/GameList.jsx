@@ -16,6 +16,7 @@ export default function GameList() {
   const [error, setError] = useState(null);
 
   useEffect(function () {
+    console.log('I should fire just once');
     async function fetchData() {
       try {
         const response = await fetch(API);
