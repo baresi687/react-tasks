@@ -53,12 +53,12 @@ export default function GameList() {
 
   return (
     <>
-      <Link to="/game-details">
-        <h1 className="text-5xl text-center">Games</h1>
-        <div className="max-w-5xl mx-auto grid grid-cols-3 gap-5 p-6">
-          {games.map(({ id, name, image, genre, released }) => {
-            return (
-              <div key={id}>
+      <h1 className="text-5xl text-center">Games</h1>
+      <div className="max-w-5xl mx-auto grid grid-cols-3 gap-5 p-6">
+        {games.map(({ id, name, image, genre, released }) => {
+          return (
+            <div key={id}>
+              <Link to="/game-details">
                 <Card>
                   <CardMedia className="h-[14rem]" component="img" image={image} alt={name} />
                   <CardContent>
@@ -73,11 +73,11 @@ export default function GameList() {
                     </Typography>
                   </CardContent>
                 </Card>
-              </div>
-            );
-          })}
-        </div>
-      </Link>
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }
