@@ -58,7 +58,7 @@ export default function GameList() {
         {games.map(({ id, name, image, genre, released }) => {
           return (
             <div key={id}>
-              <Link to="/game-details">
+              <Link to={`/game-details/${id}`}>
                 <Card>
                   <CardMedia className="h-[14rem]" component="img" image={image} alt={name} />
                   <CardContent>
