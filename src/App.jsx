@@ -3,6 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { Alert } from "@mui/material";
+import { useState } from "react";
 
 const schema = yup.object({
   name: yup.string().required("Please enter your name").min(4, "Name must be 4 characters or more"),
@@ -22,9 +24,11 @@ function App() {
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+  const [isSubmitted, setSubmitted] = useState(false);
 
   const onSubmit = (data) => {
     console.log(data);
+    setSubmitted(true);
     reset();
   };
 
@@ -70,6 +74,7 @@ function App() {
           />
         </label>
         <button>Submit</button>
+        {isSubmitted && <Alert severity="success">Form submitted</Alert>}
       </form>
     </>
   );
