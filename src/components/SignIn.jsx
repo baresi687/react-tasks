@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Alert } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { API } from "../constants/api.js";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext.jsx";
@@ -25,13 +25,19 @@ export default function SignIn() {
   const [auth, setAuth] = useContext(AuthContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (auth) {
+      navigate("/", { replace: true });
+    }
+  }, [auth, navigate]);
+
   const onSubmit = async (data) => {
     setSubmitting(true);
     try {
       const response = await axios.post(API, data);
-      console.log(response);
       if (response.status === 200) {
-        setAuth(data);
+        localStorage.setItem("token", JSON.stringify(response.data));
+        setAuth(response.data);
         setSignInError(null);
         navigate("/");
       }
