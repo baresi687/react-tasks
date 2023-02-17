@@ -30,6 +30,10 @@ nav a:hover {
   text-decoration-thickness: 2px;
 }
 
+button {
+  cursor: pointer;
+}
+
 form {
   max-width: 22rem;
   display: flex;
@@ -43,23 +47,11 @@ form input {
   width: 100%;
 }
 
-.skills-heading {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
-}
-
-#skills {
-  font-weight: normal;
-  background-color: #242424;
-  color: #242424;
-}
-
-.input-error {
+form .input-error {
   text-align: initial;
   color: darkgoldenrod;
 }
 
-button {
+form button {
   padding: 0.5rem 0;
-  cursor: pointer;
 }

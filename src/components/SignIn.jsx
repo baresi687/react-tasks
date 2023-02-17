@@ -2,39 +2,46 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Alert } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { API } from "../constants/api.js";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   email: yup.string().required("Please enter your email address").email("Please enter a valid email address"),
   password: yup.string().required("Please enter a password").min(8, "Password must be 8 characters or more"),
 });
 
-function SignIn() {
+export default function SignIn() {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const [isSubmitted, setSubmitted] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
   const [signInError, setSignInError] = useState(null);
+  const [auth, setAuth] = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
+    setSubmitting(true);
     try {
       const response = await axios.post(API, data);
       console.log(response);
       if (response.status === 200) {
-        setSubmitted(true);
+        setAuth(data);
         setSignInError(null);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
       setSignInError(error.response.data.errors[0].message);
-      setSubmitted(false);
+    } finally {
+      setSubmitting(false);
+      reset();
     }
-    reset();
   };
 
   return (
@@ -49,12 +56,9 @@ function SignIn() {
           <input type="password" placeholder="Password" {...register("password", { required: true })} />
           {errors.password && <span className="input-error">{errors.password.message}</span>}
         </label>
-        <button>Submit</button>
-        {isSubmitted && <Alert severity="success">Form submitted</Alert>}
+        <button>{isSubmitting ? "Signing in.." : "Sign In"}</button>
         {signInError && <Alert severity="warning">{signInError.toString()}</Alert>}
       </form>
     </>
   );
 }
-
-export default SignIn;
