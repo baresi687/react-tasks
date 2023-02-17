@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
-  let activeStyle = "underline";
+  const activeClass = ({ isActive }) => (isActive ? "underline" : undefined);
 
   return (
     <nav>
-      <NavLink to="/" className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+      <NavLink to="/" className={activeClass}>
         Home
       </NavLink>
-      <NavLink to="/signin" className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+      <NavLink to="/signin" className={activeClass}>
         Sign In
       </NavLink>
     </nav>

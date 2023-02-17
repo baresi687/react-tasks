@@ -17,7 +17,7 @@ nav {
 
 nav a {
   text-decoration: none;
-  text-underline-offset: 0.3rem;
+  text-underline-offset: 0.4rem;
   color: royalblue;
 }
 
@@ -27,6 +27,7 @@ nav a:hover {
 
 .underline {
   text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 
 form {
