@@ -3,6 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Alert } from "@mui/material";
 import { useState } from "react";
+import { API } from "../constants/api.js";
+import axios from "axios";
 
 const schema = yup.object({
   email: yup.string().required("Please enter your email address").email("Please enter a valid email address"),
@@ -17,10 +19,21 @@ function SignIn() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const [isSubmitted, setSubmitted] = useState(false);
+  const [signInError, setSignInError] = useState(null);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    setSubmitted(true);
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(API, data);
+      console.log(response);
+      if (response.status === 200) {
+        setSubmitted(true);
+        setSignInError(null);
+      }
+    } catch (error) {
+      console.log(error);
+      setSignInError(error.response.data.errors[0].message);
+      setSubmitted(false);
+    }
     reset();
   };
 
@@ -38,6 +51,7 @@ function SignIn() {
         </label>
         <button>Submit</button>
         {isSubmitted && <Alert severity="success">Form submitted</Alert>}
+        {signInError && <Alert severity="warning">{signInError.toString()}</Alert>}
       </form>
     </>
   );
