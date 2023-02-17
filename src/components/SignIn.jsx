@@ -3,7 +3,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Alert } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
-import { API } from "../constants/api.js";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +11,7 @@ const schema = yup.object({
   email: yup.string().required("Please enter your email address").email("Please enter a valid email address"),
   password: yup.string().required("Please enter a password").min(8, "Password must be 8 characters or more"),
 });
+const API = import.meta.env.VITE_BASE_URL;
 
 export default function SignIn() {
   const {
