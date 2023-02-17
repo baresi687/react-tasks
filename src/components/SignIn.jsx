@@ -5,7 +5,7 @@ import { Alert } from "@mui/material";
 import { useState } from "react";
 
 const schema = yup.object({
-  name: yup.string().required("Please enter your name").min(4, "Name must be 4 characters or more"),
+  email: yup.string().required("Please enter your email address").email("Please enter a valid email address"),
   password: yup.string().required("Please enter a password").min(8, "Password must be 8 characters or more"),
 });
 
@@ -29,8 +29,8 @@ function SignIn() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1>Sign In</h1>
         <label>
-          <input type="text" placeholder="Username" {...register("name", { required: true })} />
-          {errors.name && <span className="input-error">{errors.name.message}</span>}
+          <input type="email" placeholder="Email" {...register("email", { required: true })} />
+          {errors.email && <span className="input-error">{errors.email.message}</span>}
         </label>
         <label>
           <input type="password" placeholder="Password" {...register("password", { required: true })} />
